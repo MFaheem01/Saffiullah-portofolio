@@ -1,47 +1,27 @@
-// ===== NAVBAR SCROLL =====
-const nav = document.getElementById('mainNav');
+// Navbar scroll shadow
 window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 30);
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+    document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
 });
 
-// ===== ACTIVE NAV LINK =====
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+// Scroll reveal
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
+    entries.forEach((e, i) => {
         if (e.isIntersecting) {
-            navLinks.forEach(l => l.classList.remove('active'));
-            const active = document.querySelector(`.navbar-nav .nav-link[href="#${e.target.id}"]`);
-            if (active) active.classList.add('active');
+            setTimeout(() => e.target.classList.add('visible'), i * 80);
+            observer.unobserve(e.target);
         }
     });
-}, { threshold: 0.35 });
-sections.forEach(s => observer.observe(s));
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(r => observer.observe(r));
 
-// ===== SCROLL REVEAL =====
-const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-const revObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-        if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            revObs.unobserve(e.target);
-        }
-    });
-}, { threshold: 0.12 });
-revealEls.forEach(el => revObs.observe(el));
-
-// ===== BACK TO TOP =====
-const backTop = document.getElementById('backTop');
+// Active nav highlight
+const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
-    backTop.classList.toggle('show', window.scrollY > 400);
-});
-backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-// ===== CLOSE MOBILE MENU ON LINK CLICK =====
-document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        const toggler = document.querySelector('.navbar-toggler');
-        const menu = document.getElementById('navMenu');
-        if (menu.classList.contains('show')) toggler.click();
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 110) current = s.id; });
+    document.querySelectorAll('.navbar-nav .nav-link:not(.btn-hire)').forEach(l => {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === '#' + current) l.classList.add('active');
     });
 });
