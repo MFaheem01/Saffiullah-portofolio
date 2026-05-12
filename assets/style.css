@@ -470,6 +470,31 @@ section {
     margin-top: 1.25rem;
 }
 
+.hc-square-img {
+    width: 200px;
+    min-height: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid var(--accent-mid);
+    box-shadow: 0 4px 16px rgba(124, 197, 161, 0.18);
+    background: var(--bg-soft);
+}
+
+.hc-square-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+@media (max-width: 400px) {
+    .hc-square-img {
+        width: 90px;
+        border-radius: 10px;
+    }
+}
+
 .hc-tag {
     background: var(--accent-light);
     color: var(--accent-dark) !important;
