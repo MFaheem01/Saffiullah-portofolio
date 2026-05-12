@@ -441,12 +441,7 @@ section {
 .hc-role {
     font-size: 0.8rem;
     color: var(--text-gray);
-    margin-bottom: 1.25rem;
-}
-
-.hc-divider {
-    border-color: var(--border);
-    margin-bottom: 1.25rem;
+    /* margin-bottom: 1.25rem; */
 }
 
 .hc-info-row {
