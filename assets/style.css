@@ -27,6 +27,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden !important;
+    max-width: 100%;
 }
 
 body {
@@ -56,6 +58,12 @@ span {
 
 a {
     text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 ::-webkit-scrollbar {
@@ -402,6 +410,11 @@ section {
     box-shadow: var(--shadow-lg);
     animation: fadeLeft 0.8s ease 0.2s both;
     position: relative;
+}
+
+.hero-card>.d-flex {
+    gap: 1.25rem;
+    flex-wrap: wrap;
 }
 
 .hero-card::before {
@@ -1327,6 +1340,21 @@ footer .accent {
 
     .hero-card {
         margin-top: 2.5rem;
+        padding: 1.5rem;
+    }
+
+    .hero-card>.d-flex {
+        flex-direction: column;
+    }
+
+    .hc-square-img {
+        width: 100%;
+        max-width: 260px;
+        margin: 0 auto;
+    }
+
+    .hero-card .hc-tags {
+        justify-content: center;
     }
 }
 
