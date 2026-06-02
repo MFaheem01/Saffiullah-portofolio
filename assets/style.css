@@ -679,6 +679,9 @@ section {
     color: var(--accent-dark);
     font-weight: 600;
 }
+.project{
+    white-space: nowrap !important;
+}
 
 .timeline-period {
     font-size: 0.75rem;
